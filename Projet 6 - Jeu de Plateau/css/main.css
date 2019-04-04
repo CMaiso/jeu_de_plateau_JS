@@ -1,0 +1,86 @@
+/* style de la page */
+body {
+  display: flex;
+  justify-content: center;
+}
+
+#plateau {
+  display: flex;
+  flex-wrap: wrap;
+  width: 840px;
+  border: solid 2px black;
+}
+
+#stats {
+  width: 500px;
+  height: 500px;
+  text-align: center;
+  border: solid 2px black;
+  margin-left: 20px;
+}
+
+.imgJoueur {
+  width: 100px;
+  height: 100px;
+  padding: 0px 0px 20px 0px;
+}
+
+#statsJ2 {
+
+}
+
+/* cases */
+.greyCase {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+  background-color: grey;
+}
+
+.case {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+}
+
+.joueur1 {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+  background: url('../img/J1min.png') no-repeat top center;
+}
+
+.joueur2 {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+  background: url('../img/J2min.png') no-repeat top center;
+}
+
+.lance-pierre {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+  background: url('../img/LancePierremin.png') no-repeat top center;
+}
+
+.baguette {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+  background: url('../img/Baguettemin.png') no-repeat top center;
+}
+
+.baton {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+  background: url('../img/Batonmin.png') no-repeat top center;
+}
+
+.epee {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+  background: url('../img/Epeemin.png') no-repeat top center;
+}
