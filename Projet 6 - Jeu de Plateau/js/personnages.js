@@ -1,9 +1,11 @@
+import Arme from './armes.js';
+
 export default class Personnage {
-  constructor(nom, citation, arme, emplacement, skin) {
+  constructor(nom, citation, emplacement, skin) {
     this.nom = nom;
     this.citation = citation;
     this.vie = 100;
-    this.arme = arme;
+    this.arme = new Arme('lance-pierre', 10, 'skin', 'emplacement');
     this.index = emplacement;
     this.skin = skin;
   }

@@ -6,28 +6,24 @@ import Arme from './armes.js';
 class Plateau {
     constructor() {
         this.listeCases = [];
-        this.nbCase = 100;
+        this.nbCase = 40;
         this.listeJoueurs = [];
         this.indexInterdit = [];
         this.listeArmes = [
+
             {
-                "arme": "lance-pierre",
-                "degats": "10"
+                arme: "baguette",
+                degats: 20
             },
 
             {
-                "arme": "baguette",
-                "degats": "20"
+                arme: "baton",
+                degats: 30
             },
 
             {
-                "arme": "baton",
-                "degats": "30"
-            },
-
-            {
-                "arme": "epee",
-                "degats": "40"
+                arme: "epee",
+                degats: 40
             }
         ];
     }
@@ -62,10 +58,6 @@ class Plateau {
         }
     }
 
-    // alreadyUse() {
-    //     let indexInterdit = this.listeCases.filter(indexCase => indexCase.obstacle).map(indexCase => indexCase.index);
-    //     return indexInterdit;
-    // }
 
     generateArmes() {
 
@@ -73,7 +65,6 @@ class Plateau {
             let caseSelect = this.randomCase(),
                 generation = new Arme(`${arme.arme}`, `${arme.degats}`, `${arme.arme}`, caseSelect.index);
             generation.insertArme();
-            console.log(generation);
         }
 
     }
@@ -81,16 +72,37 @@ class Plateau {
     generateJoueur() {
 
         for (let i = 1; i < 3; i++) {
-            let caseSelect = this.randomCase();
-            let joueur = new Personnage(`Joueur ${i}`, `Salut, je suis joueur ${i} !`, 'arme', caseSelect.index, `joueur${i}`);
+            let caseSelect;
+            do {
+                caseSelect = this.randomCase();
+            } while (this.verifPlacement(caseSelect.index));
+
+            let joueur = new Personnage(`Joueur ${i}`, `Salut, je suis joueur ${i} !`, caseSelect.index, `joueur${i}`);
             this.listeJoueurs.push(joueur);
             joueur.insertJoueur();
         }
     }
 
-    verifEmplacement() {
-        let caseSelect = this.randomCase();
-        if (this.index === this.index + 1 || this.index === this index -1 || this.index === this.index + 10 || this.index === -10 )
+    verifPlacement(index) {
+
+        for (let joueur of this.listeJoueurs) {
+            const pos = joueur.index;
+            if (pos % 10 === 0) {
+                if (pos === index + 1 || pos === index - 10 || pos === index + 10){
+                    return true;
+                }
+            } if (pos % 10 === 9) {
+                if (pos === index - 1 || pos === index + 1 || pos === index - 10) {
+                    return true;
+                }
+            }
+//            if (pos === index - 1 || pos === index + 1 || pos === index - 10 || pos === index + 10) {
+ //               return true;
+            //}
+        }
+
+        return false;
+
     }
 
 }
@@ -103,3 +115,4 @@ const plateau = new Plateau();
 plateau.generateCase();
 plateau.generateJoueur();
 plateau.generateArmes();
+plateau.verifPlacement();
