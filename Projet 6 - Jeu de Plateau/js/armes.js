@@ -1,13 +1,13 @@
 export default class Arme {
-  constructor(name, degats, skin, emplacement) {
+  constructor(name, degats, skin) {
     this.name = name;
     this.degats = degats;
     this.skin = skin;
-    this.index = emplacement;
+    this.obstacle = false;
   }
 
-  insertArme() {
-    $(`#c${this.index}`).addClass(this.skin);
+  insertArme(index) {
+   $(`#c${index}`).addClass(this.skin);
   }
 
 }

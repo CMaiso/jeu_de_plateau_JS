@@ -1,7 +1,9 @@
 export default class Case {
   constructor(index) {
     this.index = index;
-    this.obstacle = false;
+    this._obstacle = false;
+    this._arme = null;
+    this._joueur = null;
   }
 
   changeColor(color) {
@@ -9,8 +11,15 @@ export default class Case {
   }
 
   addObstacle() {
-    this.obstacle = true;
+    this._obstacle = true;
   }
 
+  set arme(arme) {
+    this._arme = arme;
+  }
+
+  set joueur(joueur) {
+    this._joueur = joueur;
+  }
 
 }

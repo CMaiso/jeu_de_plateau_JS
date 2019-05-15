@@ -5,7 +5,7 @@ export default class Personnage {
     this.nom = nom;
     this.citation = citation;
     this.vie = 100;
-    this.arme = new Arme('lance-pierre', 10, 'skin', 'emplacement');
+    this.arme = new Arme('lance-pierre', 10, 'skin');
     this.index = emplacement;
     this.skin = skin;
   }
@@ -13,6 +13,5 @@ export default class Personnage {
   insertJoueur() {
     $(`#c${this.index}`).addClass(this.skin);
   }
-
 
 }
