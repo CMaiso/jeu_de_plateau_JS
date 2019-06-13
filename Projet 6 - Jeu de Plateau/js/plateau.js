@@ -3,7 +3,7 @@ import Personnage from './personnages.js';
 import Case from './case.js';
 import Arme from './armes.js';
 
-class Plateau {
+export class Plateau {
     constructor() {
         this.listeCases = [];
         this.nbCase = 100;
@@ -76,9 +76,9 @@ class Plateau {
             do {
                 caseSelect = this.randomCase();
             } while (this.verifPlacement(caseSelect.index));
-            let joueur = new Personnage(`Joueur ${i}`, `Salut, je suis joueur ${i} !`, caseSelect.index, `joueur${i}`);
+            let joueur = new Personnage(`Joueur ${i}`, `Salut, je suis joueur ${i} !`, `joueur${i}`);
             this.listeJoueurs.push(joueur);
-            joueur.insertJoueur();
+            joueur.insertJoueur(caseSelect.index);
             caseSelect.joueur = joueur;
         }
     }
@@ -86,10 +86,11 @@ class Plateau {
     verifPlacement(index) {
 
         for (let joueur of this.listeJoueurs) {
-            const pos = joueur.index;
+            console.log(this.listeCases);
+            const pos = this.listeCases.find(c => c._joueur === joueur).index;
 
             if (pos % 10 === 0) {
-                if (pos === index + 1 || pos === index - 10 || pos === index + 10){
+                if (pos === index + 1 || pos === index - 10 || pos === index + 10) {
                     return true;
                 }
             } else if (pos % 10 === 9) {
@@ -108,45 +109,103 @@ class Plateau {
         this.generateArmes();
     }
 
+
     lancement() {
 
-        this.joueur = this.listeJoueurs[0];
-    //methode qui permet à mes joueurs de jouer l'un après l'autre et d'une boucle pour que le jeu continue jusqu'à qu'un joueur meurs.
+        let indexJoueur = this.listeJoueurs.indexOf(this.joueur);
+        if (indexJoueur === 0) {
+            this.joueur = this.listeJoueurs[1];
+        } else {
+            this.joueur = this.listeJoueurs[0];
+        }
+        this.deplacement();
+
     }
 
+    compareLine(index1, index2) {
+        return Math.floor(index1 / 10) !== Math.floor(index2 / 10);
+    }
 
-    deplacementHaut(num) {
-
-        let compt;
+    deplacement() {
+        const orientation = [-10, 1, 10, -1];
         let deplacement = [];
+        for (let j = 0; j < 4; j++) {
+            const posOrigine = this.listeCases.find(c => c._joueur === this.joueur).index;
+            let posJoueur = posOrigine;
+            let decalage = orientation[j];
 
-        if (num === undefined) {
-            compt = 3;
-        } else {
-            compt = num;
-        }
+            for (let i = 0; i < 3; i++) {
+                posJoueur += decalage;
 
-        this.joueur.index -= 10;
-        let posJoueur = this.joueur.index;
-
-        if (compt > 0 && posJoueur >= 0) {
-            let caseSelect = this.listeCases[posJoueur];
-            if (!caseSelect._obstacle) {
-                caseSelect.changeColor('deplacement');
+                let caseSelect = this.listeCases[posJoueur];
+                if (!caseSelect || caseSelect._obstacle || caseSelect._joueur) {
+                    break;
+                }
+                if ((decalage === 1 || decalage === -1) && (this.compareLine(caseSelect.index, posOrigine))) {
+                    break;
+                }
+                caseSelect.changeColor('deplacementPossible');
                 deplacement.push(caseSelect);
-                this.deplacementHaut(compt -1);
             }
         }
-        console.log(deplacement);
+        this.updateArme();
+        this.deplacementCliquable();
     }
 
+
+    deplacementCliquable() {
+
+        let joueur = this.joueur;
+
+        $('.deplacementPossible').on('click', (event) => {
+            const caseOrigine = this.listeCases.find(c => c._joueur === this.joueur);
+            caseOrigine._joueur = null;
+
+            let newPosJoueur = $(event.target).attr('id').substring(1);
+            joueur.deplacementJoueur(caseOrigine.index, (Number(newPosJoueur)));
+
+            this.listeCases[Number(newPosJoueur)]._joueur = joueur;
+
+            const deplacement = $('.deplacementPossible');
+            deplacement.off();
+            deplacement.removeClass('deplacementPossible');
+            this.lancement();
+        })
+    }
+
+    updateArme() {
+
+        const caseOrigine = this.listeCases.find(c => c._joueur === this.joueur);
+
+        $('.deplacementPossible').on('click', (event) => {
+
+            let posJoueur = caseOrigine.index; // position de base du joueur
+            let caseClique = this.listeCases[$(event.target).attr('id').substring(1)].index; //position cliquée du joueur
+
+            let nbDeplacement = Math.abs(caseClique - posJoueur); // nb de cases entre la position de départ du joueur et celle d'arrivée
+
+            if (nbDeplacement > 3) {
+                nbDeplacement /= 10;
+            } // si le déplacement est supérieur à 3, / par 10 (pour le déplacement haut et bas)
+
+            let decalage;
+            for (let i = 1; i < nbDeplacement + 1; i++) {
+                decalage = Math.floor((caseClique - posJoueur) / nbDeplacement); //permet de connaître la direction du joueur (haut -10, bas +10, gauche -1, droite +1)
+                let caseParcourues = this.listeCases[posJoueur + (decalage * i)]; // passe sur les cases parcourues et ressort les éléments de mon tableau listeCases (pour vérifier les armes)
+                console.log(caseParcourues);
+
+                if (caseParcourues._arme !== null) { // s'il y a une arme sur mes cases parcourues
+                    const armeTemp = caseParcourues._arme;
+                    caseParcourues._arme = this.joueur.arme; // je change l'arme de mon joueur par celle sur ma case
+                    $(`.${armeTemp.skin}`).removeClass(armeTemp.skin).addClass(this.joueur.arme.skin); // changement du skin de l'arme déposée
+                    this.joueur.arme = armeTemp; // mon joueur dépose son arme
+                }
+            }
+        })
+    }
 }
-
-
-
 
 
 const plateau = new Plateau();
 plateau.generationPlateau();
 plateau.lancement();
-plateau.deplacementHaut();

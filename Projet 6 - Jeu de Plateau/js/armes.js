@@ -4,6 +4,7 @@ export default class Arme {
     this.degats = degats;
     this.skin = skin;
     this.obstacle = false;
+    //this.index = index;
   }
 
   insertArme(index) {
