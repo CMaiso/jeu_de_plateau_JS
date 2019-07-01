@@ -30,14 +30,14 @@ Si les joueurs se croisent sur des cases adjacentes (horizontalement ou vertical
 
 Lors d'un combat, le fonctionnement du jeu est le suivant :
 
-    Chacun attaque à son tour
+* Chacun attaque à son tour
 
-    Les dégâts infligés dépendent de l’arme possédée par le joueur
+* Les dégâts infligés dépendent de l’arme possédée par le joueur
 
-    Le joueur peut choisir d’attaquer ou de se défendre contre le prochain coup
+* Le joueur peut choisir d’attaquer ou de se défendre contre le prochain coup
 
-    Lorsque le joueur se défend, il encaisse 50% de dégâts en moins qu’en temps normal
+* Lorsque le joueur se défend, il encaisse 50% de dégâts en moins qu’en temps normal
 
-    Dès que les points de vie d’un joueur (initialement à 100) tombent à 0 , celui-ci a perdu. Un message s’affiche et la partie est terminée.
+* Dès que les points de vie d’un joueur (initialement à 100) tombent à 0 , celui-ci a perdu. Un message s’affiche et la partie est terminée.
     
     
