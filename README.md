@@ -18,7 +18,7 @@ Vous inventerez au moins 4 types d’arme dans le jeu, avec des dégâts différ
 Le placement des deux joueurs est lui aussi aléatoire sur la carte au chargement de la partie. Ils ne doivent pas se toucher (ils ne peuvent pas être côte à côte).
 
 
- ## :large_blue_circle: Etape 2 : les mouvements
+ ## Etape 2 : les mouvements
 
 A chaque tour, un joueur peut se déplacer d’une à trois cases (horizontalement ou verticalement) avant de terminer son tour. Il ne peut évidemment pas passer à travers un obstacle.
 
