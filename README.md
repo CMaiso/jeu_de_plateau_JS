@@ -1,7 +1,7 @@
 
 Ce projet consistera à créer un jeu en ligne en JavaScript dans lequel 2 joueurs évoluent chacun leur tour pour s'affronter. Comme dans Highlander, il ne peut en rester qu'un !
 
-# Technologies utilisées : Vanilla JavaScript, HTML5/CSS3, jQuery
+:computer: Technologies utilisées : Vanilla JavaScript, HTML5/CSS3, jQuery
 
 ## Etape 1 : génération de la carte
 
