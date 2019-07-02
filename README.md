@@ -1,13 +1,15 @@
 
 Ce projet consistera à créer un jeu en ligne en JavaScript dans lequel 2 joueurs évoluent chacun leur tour pour s'affronter. Comme dans Highlander, il ne peut en rester qu'un !
 
+# Technologies utilisées : Vanilla JavaScript, HTML5/CSS3, jQuery
+
 ## Etape 1 : génération de la carte
 
 Commencez par générer aléatoirement la carte du jeu. Chaque case peut être soit :
 
-    Vide
+* Vide
 
-    Inaccessible (grisée)
+* Inaccessible (grisée)
 
 Sur la carte, un nombre limité d’armes (4 maximum) sera placé aléatoirement et pourra être récolté par les joueurs qui passeraient dessus.
 
