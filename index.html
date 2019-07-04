@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href="css/main.css"/>
+
+    <title>Jeu de plateau tour par tour</title>
+</head>
+
+<body>
+<div id="plateau"></div>
+<div id="tableau">
+    <div id="stats">
+        <div class="interface">
+            <div id="J1">
+                <p class="titre">Joueur 1</p>
+                <div class="imgS">
+                    <img class="imgJoueur" src="img/J1.png"/>
+                    <div class="armeJ1"></div>
+                </div>
+                <div class="stats">
+                    <ul class="statsJ1"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="interface">
+            <div id="J2">
+                <p class="titre">Joueur 2</p>
+                <div class="imgS">
+                    <img class="imgJoueur" src="img/J2.png"/>
+                    <div class="armeJ2"></div>
+                </div>
+                <div class="stats">
+                    <ul class="statsJ2"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="regles">
+        <p class="titre">Règles du jeu :</p>
+        <p>Lorsque les deux joueurs sont côte à côte sur des cases adjacentes (horizontalement ou verticalement), un combat à
+            mort s'engage. Vous avez le choix entre vous défendre (ce qui réduira vos dégâts de 50%) ou d'attaquer votre adversaire.</p>
+        <p>Avant le combat, vous avez la possibilité de ramasser une des différentes armes sur le plateau. Chaque arme possède des dégâts différents.</p>
+        <p>Le premier dont les points de vie tombent à 0 perd !</p>
+    </div>
+</div>
+<!--Fenêtre modale de combat-->
+<div id="modal" class="modal" aria-hidden="true" role="dialog" style="display: none;">
+    <div id="combat">
+        <h1>Combat !</h1>
+        <div id="combatModal">
+            <div id="combatJ1">
+                <p class="titre">Joueur 1</p>
+                <div class="imgS">
+                    <img class="imgJoueur" src="img/J1.png"/>
+                    <div class="armeJ1"></div>
+                </div>
+                <div class="stats">
+                    <ul class="statsJ1"></ul>
+                </div>
+                <div class="buttonJ1">
+                    <input type="button" class="attackJ1" value="Attaquer">
+                    <input type="button" class="defenseJ1" value="Défendre">
+                </div>
+            </div>
+
+            <div id="combatJ2">
+                <p class="titre">Joueur 2</p>
+                <div class="imgS">
+                    <img class="imgJoueur" src="img/J2.png"/>
+                    <div class="armeJ2"></div>
+                </div>
+                <div class="stats">
+                    <ul class="statsJ2"></ul>
+                </div>
+                <div class="buttonJ2">
+                    <input type="button" class="attackJ2" value="Attaquer">
+                    <input type="button" class="defenseJ2" value="Défendre">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalVictoireJ1" class="modal" aria-hidden="true" role="dialog" style="display: none;">
+    <div class="modalVictoire"><h1>Victoire de J1 !</h1>
+        <img src="img/vicJ1.png"/>
+        <input type="button" class="restart" value="Lancer une nouvelle partie">
+    </div>
+</div>
+<div id="modalVictoireJ2" class="modal" aria-hidden="true" role="dialog" style="display: none;">
+    <div class="modalVictoire"><h1>Victoire de J2 !</h1>
+        <img src="img/vicJ2.png"/>
+        <input type="button" class="restart" value="Lancer une nouvelle partie">
+    </div>
+</div>
+
+
+<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+<script type='module' src='js/armes.js'></script>
+<script type='module' src='js/personnages.js'></script>
+<script type='module' src='js/plateau.js'></script>
+<script type='module' src='js/case.js'></script>
+<script type='module' src="js/main.js"></script>
+<script type='module' src="js/html.js"></script>
+
+</body>
+
+</html>

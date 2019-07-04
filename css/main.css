@@ -1,0 +1,240 @@
+/* Polices */
+
+@font-face {
+  font-family: 'opensans-regular';
+  src: url('fonts/opensans/OpenSans-Regular-webfont.eot');
+  src: url('fonts/opensans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/opensans/OpenSans-Regular-webfont.woff') format('woff'),
+  url('fonts/opensans/OpenSans-Regular-webfont.ttf') format('truetype'),
+  url('fonts/opensans/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'opensans-semibold';
+  src: url('fonts/opensans/OpenSans-Semibold-webfont.eot');
+  src: url('fonts/opensans/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/opensans/OpenSans-Semibold-webfont.woff') format('woff'),
+  url('fonts/opensans/OpenSans-Semibold-webfont.ttf') format('truetype'),
+  url('fonts/opensans/OpenSans-Semibold-webfont.svg#open_sanssemibold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'opensans-bold';
+  src: url('fonts/opensans/OpenSans-Bold-webfont.eot');
+  src: url('fonts/opensans/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/opensans/OpenSans-Bold-webfont.woff') format('woff'),
+  url('fonts/opensans/OpenSans-Bold-webfont.ttf') format('truetype'),
+  url('fonts/opensans/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* style de la page */
+body {
+  display: flex;
+  justify-content: center;
+  font-family: 'opensans-regular', sans-serif;
+}
+img {
+  display: block;
+}
+
+#plateau {
+  display: flex;
+  flex-wrap: wrap;
+  width: 840px;
+  border: solid 2px black;
+}
+
+#stats {
+  width: 500px;
+  height: 500px;
+  border: solid 2px black;
+  margin-left: 20px;
+}
+
+li {
+  list-style: none;
+}
+
+.titre {
+  font-family: 'opensans-bold', sans-serif;
+  text-align: center;
+}
+
+.statsJ1, .statsJ2 {
+  padding: 20px 0px 20px 0px;
+  margin: 0px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+}
+
+.regles {
+  padding-top: 15px;
+  width: 500px;
+  height: 305px;
+  text-align: justify;
+  border: solid 2px black;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+.regles p {
+  padding: 0 10px 0 10px;
+}
+
+#tableau {
+  display: flex;
+  flex-direction: column;
+}
+
+.imgS {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+#combatJ1, #combatJ2 {
+  border: solid 2px black;
+  width: 400px;
+  height: 300px;
+  margin: 0px 10px 0px 10px;
+}
+
+.buttonJ1, .buttonJ2 {
+  display: flex;
+  justify-content: center;
+}
+
+/*fenêtre modale */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#combat {
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #FFF;
+  width: 800px;
+  /*max-width: calc(100vh - 20px);*/
+  /*max-height: calc(100vh - 20px);*/
+  overflow: auto;
+}
+
+#combatModal {
+  display: flex;
+  justify-content: center;
+}
+.attackJ1, .attackJ2  {
+  padding:6px 0 6px 0;
+  background:#f5f5f5;
+  border-radius:2px;
+  width:100px;
+  border:1px solid #ccc;
+  margin: 0 5px 0 0;
+}
+
+.defenseJ1, .defenseJ2 {
+  padding:6px 0 6px 0;
+  background:#f5f5f5;
+  border-radius:2px;
+  width:100px;
+  border:1px solid #ccc;
+  margin: 0 0 0 5px;
+}
+
+.modalVictoire {
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #FFF;
+  width: 800px;
+  overflow: auto;
+}
+
+/* cases */
+.greyCase {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+  background-color: #444444;
+}
+
+.case {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+}
+
+.deplacementPossible {
+  height: 80px;
+  width:80px;
+  background-color: lightgrey ;
+}
+
+div .joueur1 {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+  background: url('../img/J1min.png') no-repeat top center;
+}
+
+div .joueur2 {
+  width: 80px;
+  height: 80px;
+  border: solid 2px black;
+  background: url('../img/J2min.png') no-repeat top center;
+}
+
+/* armes */
+
+.lance-pierre {
+  width: 80px;
+  height: 80px;
+  background-image: url('../img/lancepierremin.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.baguette {
+  width: 80px;
+  height: 80px;
+  background-image: url('../img/baguettemin.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.baton {
+  width: 80px;
+  height: 80px;
+  background-image: url('../img/batonmin.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.epee {
+  width: 80px;
+  height: 80px;
+  background-image: url('../img/epeemin.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
