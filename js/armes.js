@@ -3,7 +3,6 @@ export default class Arme {
     this.name = name;
     this.degats = degats;
     this.skin = skin;
-    this.obstacle = false;
     this.affichage = affichage;
   }
 

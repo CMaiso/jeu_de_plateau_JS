@@ -31,13 +31,13 @@ export class Plateau {
         ];
     }
 
-    randomCase() {
+    randomCase() { // génère un index aléatoire et vérifie qu'il n'a pas déjà été généré
         let random;
         do {
             random = Math.floor(Math.random() * this.nbCase);
         } while (this.indexInterdit.includes(random));
 
-        this.indexInterdit.push(random);
+        this.indexInterdit.push(random); // indexInterdit contient les index aléatoires déjà utilisés
         return this.listeCases[random];
     }
 
@@ -79,7 +79,7 @@ export class Plateau {
             do {
                 caseSelect = this.randomCase();
             } while (this.verifPlacement(caseSelect.index));
-            let joueur = new Personnage(`Joueur ${i}`, `Salut, je suis joueur ${i} !`, `joueur${i}`);
+            let joueur = new Personnage(`Joueur ${i}`, `joueur${i}`);
             this.listeJoueurs.push(joueur);
             joueur.insertJoueur(caseSelect.index);
             caseSelect.joueur = joueur;
@@ -87,17 +87,17 @@ export class Plateau {
     }
 
 
-    verifPlacement(index) {
+    verifPlacement(index) { // vérifie que les deux joueurs n'apparaissent pas l'un à côté de l'autre
 
         for (let joueur of this.listeJoueurs) {
             console.log(this.listeCases);
             const pos = this.listeCases.find(c => c._joueur === joueur).index;
 
-            if (pos % 10 === 0) {
+            if (pos % 10 === 0) { // si le J1 est sur le bord de gauche
                 if (pos === index + 1 || pos === index - 10 || pos === index + 10) {
                     return true;
                 }
-            } else if (pos % 10 === 9) {
+            } else if (pos % 10 === 9) { // si le J1 est sur le bord de droite
                 if (pos === index - 1 || pos === index + 10 || pos === index - 10) {
                     return true;
                 }
@@ -125,13 +125,13 @@ export class Plateau {
         this.deplacement();
     }
 
-    compareLine(index1, index2) {
+    compareLine(index1, index2) { // vérifie si les deux index sont sur la même ligne pour prendre en compte les bords du plateau
         return Math.floor(index1 / 10) !== Math.floor(index2 / 10);
     }
 
     deplacement() {
         const orientation = [-10, 1, 10, -1];
-        let deplacement = [];
+
         for (let j = 0; j < 4; j++) {
             const posOrigine = this.listeCases.find(c => c._joueur === this.joueur).index;
             let posJoueur = posOrigine;
@@ -141,14 +141,13 @@ export class Plateau {
                 posJoueur += decalage;
 
                 let caseSelect = this.listeCases[posJoueur];
-                if (!caseSelect || caseSelect._obstacle || caseSelect._joueur) {
+                if (!caseSelect || caseSelect._obstacle || caseSelect._joueur) { // si caseSelect renvoie undefined, s'il y a un obstacle ou un joueur, alors on ne génère plus de cases de déplacements
                     break;
                 }
-                if ((decalage === 1 || decalage === -1) && (this.compareLine(caseSelect.index, posOrigine))) {
+                if ((decalage === 1 || decalage === -1) && (this.compareLine(caseSelect.index, posOrigine))) {// s'il ne sont pas sur la même ligne donc sur un bord du plateau, ne pas faire la génération à droite et à gauche
                     break;
                 }
                 caseSelect.changeColor('deplacementPossible');
-                deplacement.push(caseSelect);
             }
         }
         this.updateArme();
@@ -164,7 +163,7 @@ export class Plateau {
 
         $('.deplacementPossible').on('click', (event) => {
             const caseOrigine = this.listeCases.find(c => c._joueur === this.joueur);
-            caseOrigine._joueur = null;
+            caseOrigine.joueur = null;
 
             let newPosJoueur = $(event.target).attr('id').substring(1);
             joueur.deplacementJoueur(caseOrigine.index, (Number(newPosJoueur)));
@@ -295,7 +294,7 @@ export class Plateau {
 
                 this.restart();
     }
-    restart() {
+    restart() { //rejouer la partie
         $('.restart').on('click', () => {
             location.reload();
         })
