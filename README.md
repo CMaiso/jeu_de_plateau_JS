@@ -1,5 +1,3 @@
-Vous pouvez voir le projet via ce lien : http://camillemaisonobe.fr/projet6/
-
 Ce projet consiste à créer un jeu en ligne en JavaScript dans lequel 2 joueurs évoluent chacun leur tour pour s'affronter. Comme dans Highlander, il ne peut en rester qu'un !
 
 :computer: Technologies utilisées : JavaScript ES6, HTML5/CSS3, jQuery
